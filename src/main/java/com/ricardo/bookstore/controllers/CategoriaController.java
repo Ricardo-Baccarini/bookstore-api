@@ -64,4 +64,4 @@ public class CategoriaController {
 	}
 }
 
-// localhost:8080/categorias/1
+// localhost:8080/categorias/
