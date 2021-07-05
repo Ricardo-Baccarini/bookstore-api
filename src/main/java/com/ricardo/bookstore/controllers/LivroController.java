@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ricardo.bookstore.domain.Categoria;
 import com.ricardo.bookstore.domain.Livro;
 import com.ricardo.bookstore.service.LivroService;
 
