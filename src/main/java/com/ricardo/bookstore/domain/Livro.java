@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,8 +21,17 @@ public class Livro implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@NotEmpty(message = "O título do livro é requerido")
+	@Length(min = 1, max = 100, message = "O título deve ter entre 1 e 100 posições")
 	private String titulo;
+	
+	@NotEmpty(message = "O autor do livro é requerido")
+	@Length(min = 1, max = 150, message = "O autor deve ter entre 1 e 150 posições")
 	private String nome_autor;
+
+	@NotEmpty(message = "O texto do livro é requerido")
+	@Length(min = 1, max = 2000000, message = "O texto deve ter entre 1 e 2000000 posições")
 	private String texto;
 
 	@JsonIgnore // Ignora a caterira na serializacao.

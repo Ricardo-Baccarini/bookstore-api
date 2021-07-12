@@ -2,6 +2,10 @@ package com.ricardo.bookstore.dtos;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.ricardo.bookstore.domain.Categoria;
 
 public class CategoriaDTO implements Serializable {
@@ -9,7 +13,12 @@ public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	@NotEmpty(message = "O nome da categoria é requerida")
+	@Length(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 posições")
 	private String nome;
+
+	@NotEmpty(message = "A descrição da categoria é requerida")
+	@Length(min = 3, max = 200, message = "A descrição deve ter entre 3 e 100 posições")
 	private String descricao;
 
 	public CategoriaDTO() {

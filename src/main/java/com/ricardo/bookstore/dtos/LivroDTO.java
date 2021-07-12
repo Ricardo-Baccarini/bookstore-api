@@ -2,6 +2,10 @@ package com.ricardo.bookstore.dtos;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.ricardo.bookstore.domain.Livro;
 
 public class LivroDTO implements Serializable {
@@ -9,6 +13,9 @@ public class LivroDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+
+	@NotEmpty(message = "O título do livro é requerido")
+	@Length(min = 1, max = 100, message = "O título deve ter entre 1 e 100 posições")
 	private String titulo;
 
 	public LivroDTO() {
