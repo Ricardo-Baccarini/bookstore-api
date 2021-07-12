@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,6 +66,12 @@ public class LivroController {
 		return ResponseEntity.created(uri).build();
 		//return ResponseEntity.ok().body(newObj);
 		
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public void delete(@PathVariable Integer id){
+		service.delete(id);
+		ResponseEntity.noContent().build();
 	}
 	
 }
