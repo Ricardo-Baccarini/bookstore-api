@@ -4,11 +4,11 @@ import { Categoria } from "../categoria.model";
 import { CategoriaService } from "../categoria.service";
 
 @Component({
-  selector: "app-categoria-delete",
-  templateUrl: "./categoria-delete.component.html",
-  styleUrls: ["./categoria-delete.component.css"],
+  selector: "app-categoria-update",
+  templateUrl: "./categoria-update.component.html",
+  styleUrls: ["./categoria-update.component.css"],
 })
-export class CategoriaDeleteComponent implements OnInit {
+export class CategoriaUpdateComponent implements OnInit {
   categoria: Categoria = {
     id: "",
     nome: "",
@@ -18,8 +18,7 @@ export class CategoriaDeleteComponent implements OnInit {
   constructor(
     private service: CategoriaService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router) {}
 
   ngOnInit() {
     this.categoria.id = this.route.snapshot.paramMap.get("id");
@@ -32,19 +31,18 @@ export class CategoriaDeleteComponent implements OnInit {
     });
   }
 
-  delete(): void {
-    this.service.delete(this.categoria.id).subscribe(
-      (resposta) => {
-        this.router.navigate(["categorias"]);
-        this.service.mensagem("Categoria excluída com sucesso!!!");
-      },
-      (err) => {
-        this.service.mensagem(err.error.error);
-      }
-    );
+  update(): void {
+    this.service.update(this.categoria).subscribe((resposta) => {
+      this.router.navigate(['categorias']);
+      this.service.mensagem('Categoria atualizada com sucesso!!!')
+    }, err => {
+      console.log(err);
+      this.service.mensagem(err.error.error);
+    });
   }
 
   cancel(): void {
     this.router.navigate(["categorias"]);
   }
+
 }
